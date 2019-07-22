@@ -18,6 +18,10 @@
 	top: 0;
 }
 
+.template {
+	display: none;
+}
+
 #app-container {
 	width: 90%;
 	max-width: 1200px;
@@ -28,3 +32,14 @@
 	background-color: #FFF;
 	z-index: 5;		/*per essere sicuro che sia in primo piano*/
 }
+
+#lcol {
+	float: left;
+	width: 30%;
+	border-right: rgba(0,0,0,0.7);
+}
+#rcol {
+	float: left;
+	width: 70%;
+}
+

@@ -4,6 +4,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 	<title>Boolzap</title>
 </head>
 <body>
@@ -119,15 +121,21 @@
 				<!-- input chat -->
 				<div id="rcol__chat-input">
 					<div id="rcol__chat-input__emoji"></div>
-					<div id="rcol__chat-input__textinput"></div>
+					<div id="rcol__chat-input__text">
+						<input type="text" placeholder="Scrivi un messaggio" id="rcol__chat-input__textinput">
+					</div>
 					<div id="rcol__chat-input__mic"></div>
-					<div id="rcol__chat-input__send"></div>
+					<div id="rcol__chat-input__send"><i class="fas fa-paper-plane"></i></div>
 				</div>
 
 			</section>
 		</div>
 	</div>
-
+	
+	<!-- TEMPLATE -->
+	<div class="template">
+		<div class="rcol__chat__message user"></div>
+	</div>
 	<script type="text/javascript" src="javascripts/main.js"></script>
 </body>
 </html>
