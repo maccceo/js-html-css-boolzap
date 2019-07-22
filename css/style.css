@@ -3,3 +3,28 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+#main-container {
+	width: 100vw;
+	height: 100vh;
+	background-color: #D9DAD1;
+}
+
+#green-background-rectangle {
+	height: 100px;
+	width: 100%;
+	background-color: #009587;
+	position: absolute;
+	top: 0;
+}
+
+#app-container {
+	width: 90%;
+	max-width: 1200px;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	margin: 30px auto;
+	background-color: #FFF;
+	z-index: 5;		/*per essere sicuro che sia in primo piano*/
+}
