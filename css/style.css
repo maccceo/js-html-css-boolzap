@@ -37,6 +37,7 @@ a:visited {
 #app-container {
 	width: 90%;
 	max-width: 1200px;
+	max-height: 100vh;
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%);
@@ -48,12 +49,14 @@ a:visited {
 #lcol {
 	float: left;
 	width: 30%;
+	height: 100%;
 	border-right: rgba(0,0,0,0.7);
 }
 
 #rcol {
 	float: left;
 	width: 70%;
+	height: 100%;
 }
 
 
@@ -181,4 +184,50 @@ a:visited {
 #lcol__alert__link {
 	text-decoration: underline;
 	font-size: 0.7rem;
+}
+
+
+
+
+/*# # # COLONNA DI DESTRA # # #*/
+
+
+
+
+
+/*
+#rcol__chat {}
+	.rcol__chat__message {}
+		.user {}
+		.other {}
+*/
+
+#rcol__chat {
+	background-image: url("../resources/images/chat-background.png");
+ 	background-color: #E3DCD5;
+ 	background-repeat: no-repeat;
+ 	background-position: top center;
+ 	background-size: cover;
+ 	padding: 20px 60px;
+ 	overflow: auto;
+ 	display: flex;
+ 	flex-direction: column;
+}
+
+.rcol__chat__message {
+	padding: 15px;
+	background-color: #FFF;
+	border-radius: 6px;
+	margin: 10px 0;
+	font-size: 0.9rem;
+	max-width: max-content;
+	min-width: 100px;
+}
+
+.user {
+	background-color: #D2FABA;
+	align-self: flex-end;
+}
+
+.other {
 }
