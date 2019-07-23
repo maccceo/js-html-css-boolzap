@@ -12,6 +12,9 @@ $(document).ready(function() {
 	});
 });
 
+
+
+
 function sendMessage() {
 	var textInput = $("#rcol__chat-input__textinput");
 	
@@ -20,16 +23,34 @@ function sendMessage() {
 	textInput.val("");
 
 	// vado a prendere il template di aggiunta messaggi
-	var messageInHTML = $(".template .rcol__chat__message").clone();
+	var messageInHTML = $(".template .user").clone();
 	// gli inserisco il messaggio acquisito
 	messageInHTML.text(message);
 
 	// aggiungo il messaggio pronto in HTML alla chat
 	$("#rcol__chat").append(messageInHTML);	
+
+	// avvio la funzione di risposta al messaggio
+	replyMessage();
 }
 
-$(document).keypress(function(e) {
-  if(e.which == 13) {
-    // enter pressed
-  }
-});
+function replyMessage() {
+	var lastAccessText = $(".navbar__user-info__lastaccess");
+
+	// backup ultimo accesso e sovrascrivo con Sta scrivendo
+	var lastAccessTextBackup = lastAccessText.text();
+	lastAccessText.text("Sta scrivendo ...");
+
+	setTimeout(function() {
+		// template visualizzazione messaggio ricevuto
+		var replyMessage = $(".template .other").clone();
+		// aggiungo contenuto messaggio
+		replyMessage.text("Ok");
+		// visualizzo il messaggio
+		$("#rcol__chat").append(replyMessage);	
+
+		// ritorno a visualizzare l'ultimo accesso
+		lastAccessText.text(lastAccessTextBackup);
+	}, 1000);
+	
+}
