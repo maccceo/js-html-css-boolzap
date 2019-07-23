@@ -26,6 +26,12 @@ input[type=text] {
 	outline: none;
 }
 
+.user-icon {
+	border-radius: 50%;
+	height: 35px;
+	width: 35px;
+}
+
 #main-container {
 	width: 100vw;
 	height: 100vh;
@@ -47,7 +53,6 @@ input[type=text] {
 #app-container {
 	width: 90%;
 	max-width: 1200px;
-	max-height: 100vh;
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%);
@@ -60,7 +65,7 @@ input[type=text] {
 	float: left;
 	width: 30%;
 	height: 100%;
-	border-right: rgba(0,0,0,0.7);
+	border-right: 1px solid rgba(0,0,0,0.4);
 }
 
 #rcol {
@@ -104,12 +109,6 @@ input[type=text] {
 .navbar__user-info__photo {
 	display: flex;
 	align-items: center;
-}
-
-.navbar__user-info__photo img {
-	border-radius: 50%;
-	height: 35px;
-	width: 35px;
 }
 
 .navbar__user-info__text-wrapper {
@@ -186,7 +185,6 @@ input[type=text] {
 }
 
 #lcol__alert__title {
-	font-weight: bold;
 	font-size: 0.8rem;
 	margin-bottom: 2px;
 }
@@ -233,7 +231,75 @@ input[type=text] {
 
 
 
+
+
+/*
+#lcol__contacts {}
+  	PER OGNI CONTATTO
+  	.lcol__contact {}
+		.lcol__contact__photo {}
+		.lcol__contact__text-wrapper {}
+			.lcol__contact__name {}
+			.lcol__contact__message {}
+		.lcol__contact__recived {}
+*/
+#lcol__contacts {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.lcol__contact {
+	display: flex;
+	align-items: center;
+	padding: 12px;
+	height: 60px;
+	width: 100%;
+}
+
+.lcol__contact__photo {
+	padding-right: 12px;
+	display: flex;
+	align-items: center;
+}
+
+.lcol__contact__text-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.lcol__contact__name {
+	font-size: 0.9rem;
+	margin-bottom: 4px;
+}
+
+.lcol__contact__name:hover {
+	text-decoration: underline;
+}
+
+.lcol__contact__message {
+	font-size: 0.8rem;
+	color: #AFAFAF;
+	font-weight: 500;
+	overflow: hidden;
+	width: 100%;
+	height: 0.8rem;
+	padding-right: 6px;
+}
+
+
+
+
+
+
+
+
 /*# # # COLONNA DI DESTRA # # #*/
+
+
+
 
 
 
