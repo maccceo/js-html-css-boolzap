@@ -15,6 +15,16 @@ a:visited {
 	color: inherit;
 }
 
+input[type=text] {
+	width: 100%;
+	border:none;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+	outline: none;
+}
 
 #main-container {
 	width: 100vw;
@@ -189,6 +199,40 @@ a:visited {
 
 
 
+
+/*
+#lcol__searchbar {}
+	#lcol__searchbar__icon {}
+	#lcol__searchbar__text {}
+		#lcol__searchbar__textinput {}
+*/
+#lcol__searchbar {
+	padding: 13px;
+	height: 40px;
+	width: 100%;
+	color: #AFAFAF;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#lcol__searchbar__icon {
+	padding-right: 8px;
+}
+
+#lcol__searchbar__text {
+	width: 100%;
+}
+
+#lcol__searchbar__textinput {
+	width: 100%;
+	line-height: 0.8rem;
+	font-size: 0.8rem;
+	color: #888;
+}
+
+
+
 /*# # # COLONNA DI DESTRA # # #*/
 
 
@@ -268,14 +312,6 @@ a:visited {
 }
 
 #rcol__chat-input__textinput {
-	width: 100%;
-	border:none;
-    background-image:none;
-    background-color:transparent;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-	outline: none;
 	line-height: 40px;
 	font-size: 1rem;
 }
