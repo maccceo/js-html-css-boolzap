@@ -1,5 +1,5 @@
 var letterCounter = 0;
-
+var contactID = "id001";
 // $(document/parentPresenteinpagina).on(‘click’, ‘.figlioCheGestisceLEvento’, function()...
 
 $(document).ready(function() {
@@ -53,8 +53,13 @@ function sendMessage() {
 	// gli inserisco il messaggio acquisito
 	messageInHTML.text(message);
 
-	// aggiungo il messaggio pronto in HTML alla chat
-	$("#rcol__chat").append(messageInHTML);	
+	// cerco la chat del contatto aperto attualmente
+	$(".rcol__chat").each(function(index) {
+		if ($(this).attr("person") === contactID) {
+			// aggiungo il messaggio pronto in HTML alla chat
+			$(this).append(messageInHTML);
+		}
+	});
 
 	// resetto icona microfono
 	letterCounter = 0;
@@ -77,8 +82,14 @@ function replyMessage() {
 		var replyMessage = $(".template .other").clone();
 		// aggiungo contenuto messaggio
 		replyMessage.text("Ok");
-		// visualizzo il messaggio
-		$("#rcol__chat").append(replyMessage);	
+
+		// cerco la chat del contatto a cui devo rispondere
+		$(".rcol__chat").each(function(index) {
+			if ($(this).attr("person") === contactID) {
+				// visualizzo il messaggio
+				$(this).append(replyMessage);
+			}
+		});
 
 		// ritorno a visualizzare l'ultimo accesso
 		lastAccessText.text(lastAccessTextBackup);
@@ -102,7 +113,7 @@ function searchContact() {
 }
 
 function openChat() {
-	var contactName, contactPhoto, contactID;
+	var contactName, contactPhoto;
 
 	//coloro di grigio il contatto cliccato
 	$(".lcol__contact").removeClass("selected");
