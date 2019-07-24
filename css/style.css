@@ -351,6 +351,9 @@ input[type=text] {
 	font-size: 0.9rem;
 	max-width: max-content;
 	min-width: 100px;
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
 }
 
 .user {
@@ -361,6 +364,28 @@ input[type=text] {
 .other {
 }
 
+.rcol__chat__message__menu .fa-chevron-down {
+	display: none;
+}
+
+.rcol__chat__message:hover .fa-chevron-down {
+	display: block;
+}
+
+.rcol__chat__message__dropdown {
+	display: none;
+	flex-direction: column;
+	margin-top: 3px;
+	list-style: none;
+}
+
+.rcol__chat__message__dropdown > * {
+	padding: 3px 0;
+}
+
+.rcol__chat__message__menu {
+	padding-left: 7px;
+}
 
 
 
@@ -407,4 +432,3 @@ input[type=text] {
 #rcol__chat-input__send	{
 	display: none;
 }
-

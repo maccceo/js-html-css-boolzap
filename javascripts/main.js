@@ -12,7 +12,6 @@ $(document).ready(function() {
 		if (event.which == 13 && letterCounter > 0) {
 			sendMessage();
 		}
-
 		// se non è invio l'utente sta scrivendo
 		else if (event.which != 13) {
 			// switch icona invia messaggio / microfono
@@ -36,6 +35,10 @@ $(document).ready(function() {
 
 	// ##APERTURA CHAT CONTATTI
 	$(".lcol__contact").click(openChat);
+
+
+	// ##APERTURA DROPDOWN DETTAGLI MESSAGGIO
+	$(".rcol__chat").on("click", ".fa-chevron-down", messageDetails);
 });
 
 
@@ -136,3 +139,14 @@ function openChat() {
 		}
 	});
 }
+
+function messageDetails() {
+	$(".rcol__chat__message__dropdown").css("display", "none");
+	$(this).siblings(".rcol__chat__message__dropdown").css("display", "flex");
+
+	//cancella messaggio
+	$(".rcol__chat").on("click", ".message__delete", function(){
+		$(this).parents(".rcol__chat__message").remove();
+	});
+}
+
