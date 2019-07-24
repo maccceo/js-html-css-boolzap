@@ -263,6 +263,12 @@ input[type=text] {
 	padding: 12px;
 	height: 60px;
 	width: 100%;
+	cursor: pointer;
+}
+
+/*contatto selezionato, chat relativa aperta*/
+.selected {
+	background-color: #D8D8D8;
 }
 
 .lcol__contact__photo {
@@ -318,7 +324,7 @@ input[type=text] {
 		.other {}
 */
 
-#rcol__chat {
+.rcol__chat {
 	background-image: url("../resources/images/chat-background.png");
  	background-color: #E3DCD5;
  	background-repeat: no-repeat;
@@ -329,6 +335,12 @@ input[type=text] {
  	display: flex;
  	flex-direction: column;
  	height: calc(100% - 110px);
+ 	display: none;
+}
+
+/*classe assegnata dinamicamente alla chat legata al contatto selezionato*/
+.show {
+	display: flex;
 }
 
 .rcol__chat__message {

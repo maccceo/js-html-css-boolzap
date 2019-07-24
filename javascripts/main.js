@@ -1,5 +1,7 @@
 var letterCounter = 0;
 
+// $(document/parentPresenteinpagina).on(‘click’, ‘.figlioCheGestisceLEvento’, function()...
+
 $(document).ready(function() {
 	
 	// ##INVIO MESSAGGIO
@@ -25,10 +27,15 @@ $(document).ready(function() {
 		}
 	});
 
+
 	// ##RICERCA CONTATTI
 	$("#lcol__searchbar__textinput").keyup(function(event) {
 		searchContact();
 	});
+
+
+	// ##APERTURA CHAT CONTATTI
+	$(".lcol__contact").click(openChat);
 });
 
 
@@ -90,6 +97,31 @@ function searchContact() {
 		if ($(this).text().toLowerCase().includes(contactName)) {
 			// mostro il div del contatto trovato
 			$(this).parents($(".lcol__contact")).show();
+		}
+	});
+}
+
+function openChat() {
+	var contactName, contactPhoto, contactID;
+
+	//coloro di grigio il contatto cliccato
+	$(".lcol__contact").removeClass("selected");
+	$(this).addClass("selected");
+
+	//prelevo nome e foto e piazzarli nell'intestazione della chat
+	contactName = $(this).find(".lcol__contact__name").text();
+	contactPhoto = $(this).find(".lcol__contact__photo").html();
+	$(".navbar__user-info__name").text(contactName);
+	$(".navbar__user-info__photo").html(contactPhoto);
+
+	//prendo il codice univoco del contatto per aprire la chat corrispondente
+	contactID = $(this).attr("person");
+
+	//apro la chat corrispondente
+	$(".rcol__chat").removeClass("show");
+	$(".rcol__chat").each(function(index) {
+		if ($(this).attr("person") === contactID) {
+			$(this).addClass("show");
 		}
 	});
 }
