@@ -27,7 +27,11 @@ $(document).ready(function() {
 
 	//##RICERCA CONTATTI
 	$("#lcol__searchbar__textinput").keypress(function(event) {
-		searchContact(event.which);
+		console.log(event.which);
+		// accetto solo simboli lettere e numeri
+		if (event.which > 31 && event.which < 127) {
+			searchContact(event.which);
+		}
 	});
 });
 
@@ -78,7 +82,22 @@ function replyMessage() {
 	}, 1000);	
 }
 
-function searchContact(word) {
-	var word = word.toLowerCase();
-	
+function searchContact(letter) {
+	console.log(letter);
+	var contactName = $("#lcol__searchbar__textinput").val();
+	// non so perchè .val() non acquisce il carattere appena inserito, quindi lo aggiungo io
+	var letterString = String.fromCharCode(letter);
+	contactName = (contactName + letterString).toLowerCase();
+	console.log(contactName);
+
+	// nascondo tutti i contatti
+	$(".lcol__contact").hide();
+
+	//visualizzo solo quelli che corrispondono alla ricerca
+	$(".lcol__contact__name").each(function(index) {
+		if ($(this).text().toLowerCase().includes(contactName)) {
+			// mostro il div del contatto trovato
+			$(this).parents($(".lcol__contact")).show();
+		}
+	});
 }
