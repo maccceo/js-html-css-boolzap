@@ -1,6 +1,3 @@
-var contactID = "id001";
-
-
 $(document).ready(function() {
 	// ##INVIO MESSAGGIO
 	// al click del tasto Spedisci
@@ -57,10 +54,9 @@ function sendMessage() {
 	// gli inserisco il messaggio acquisito
 	messageInHTML.text(message);
 
-	// cerco la chat del contatto aperto attualmente
+	// lo visualizzo nella chat del contatto attualmente attivo
 	$(".rcol__chat").each(function(index) {
-		if ($(this).attr("person") === contactID) {
-			// aggiungo il messaggio pronto in HTML alla chat
+		if ($(this).hasClass("show")) {
 			$(this).append(messageInHTML);
 		}
 	});
@@ -88,7 +84,7 @@ function replyMessage() {
 
 		// cerco la chat del contatto a cui devo rispondere
 		$(".rcol__chat").each(function(index) {
-			if ($(this).attr("person") === contactID) {
+			if ($(this).hasClass("show")) {
 				// visualizzo il messaggio
 				$(this).append(replyMessage);
 			}
@@ -129,7 +125,7 @@ function openChat() {
 	$(".navbar__user-info__photo").html(contactPhoto);
 
 	//prendo il codice univoco del contatto per aprire la chat corrispondente
-	contactID = $(this).attr("person");
+	var contactID = $(this).attr("person");
 
 	//apro la chat corrispondente
 	$(".rcol__chat").removeClass("show");
