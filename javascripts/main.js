@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
 	// ##INVIO MESSAGGIO
 	// al click del tasto Spedisci
 	$(".fa-paper-plane").click(sendMessage);
@@ -17,7 +18,7 @@ $(document).ready(function() {
 				$("#rcol__chat-input__send").show();
 			}
 			// non c'è testo = microfono on
-			else if ($("#rcol__chat-input__textinput").val().length == 0) {
+			else {
 				$("#rcol__chat-input__mic").show();
 				$("#rcol__chat-input__send").hide();
 			}
@@ -36,7 +37,7 @@ $(document).ready(function() {
 
 
 	// ##APERTURA DROPDOWN DETTAGLI MESSAGGIO
-	$(".rcol__chat").on("click", ".fa-chevron-down", messageDetails);
+	$(".rcol__chat").on("click", ".rcol__chat__message__icon", messageDetails);
 });
 
 
@@ -137,8 +138,8 @@ function openChat() {
 }
 
 function messageDetails() {
-	$(".rcol__chat__message__dropdown").css("display", "none");
-	$(this).siblings(".rcol__chat__message__dropdown").css("display", "flex");
+	//visualizzo il menù della freccina selezionata
+	$(this).next().toggle();
 
 	//cancella messaggio
 	$(".rcol__chat").on("click", ".message__delete", function(){
