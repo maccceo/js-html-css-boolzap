@@ -1,25 +1,26 @@
-var letterCounter = 0;
 var contactID = "id001";
-// $(document/parentPresenteinpagina).on(‘click’, ‘.figlioCheGestisceLEvento’, function()...
+
 
 $(document).ready(function() {
-	
 	// ##INVIO MESSAGGIO
 	// al click del tasto Spedisci
 	$(".fa-paper-plane").click(sendMessage);
-	$("#rcol__chat-input__textinput").keypress(function(event) {
-		// alla pressione del tasto invio
-		if (event.which == 13 && letterCounter > 0) {
+
+	// alla pressione del tasto invio (solo se c'è un messaggio da inviare)
+	$("#rcol__chat-input__textinput").keyup(function(event) {
+		if (event.which == 13 && $("#rcol__chat-input__textinput").val().length > 0) {
 			sendMessage();
 		}
-		// se non è invio l'utente sta scrivendo
+
+		// switch icone mic/send quando c'è/non c'è testo
 		else if (event.which != 13) {
-			// switch icona invia messaggio / microfono
-			letterCounter++;
-			if (letterCounter > 0) {
+			// c'è testo = invia messaggio on
+			if ($("#rcol__chat-input__textinput").val().length > 0) {
 				$("#rcol__chat-input__mic").hide();
 				$("#rcol__chat-input__send").show();
-			} else if (letterCounter = 0) {
+			}
+			// non c'è testo = microfono on
+			else if ($("#rcol__chat-input__textinput").val().length == 0) {
 				$("#rcol__chat-input__mic").show();
 				$("#rcol__chat-input__send").hide();
 			}
@@ -65,7 +66,6 @@ function sendMessage() {
 	});
 
 	// resetto icona microfono
-	letterCounter = 0;
 	$("#rcol__chat-input__mic").show();
 	$("#rcol__chat-input__send").hide();
 	
