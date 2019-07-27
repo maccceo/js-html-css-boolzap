@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	// #PRENDO ORA ULTIMO MESSAGGIO E LA VISUALIZZO NEI CONTATTI E NELL'INTESTAZIONE DELLA CHAT
+	initHours();
 
 	// ##INVIO MESSAGGIO
 	// al click del tasto Spedisci
@@ -43,15 +45,39 @@ $(document).ready(function() {
 
 
 
+function initHours() {
+	var contactID, lastMsg, lastAccess;
+	$(".lcol__contact").each(function() {
+		// prendo il person ID del contatto
+		contactID = $(this).attr("person");
+		
+		// salvo l'ora dell'ultimo messaggio presente nella chat
+		lastMsg = $(".rcol__chat[person='" + contactID + "']").find(".rcol__chat__message__time:last").text();
+
+		// la inserisco come informazione del contatto
+		$(this).find(".lcol__contact__recived").text(lastMsg);
+	});
+
+	// salvo l'ora dell'ultimo messaggio in chat RICEVUTO
+	lastAccess = $(".rcol__chat.show").find(".other .rcol__chat__message__time:last").text();
+	// se non c'erano messaggi ricevuti invento l'ora
+	if (!lastAccess) {
+		lastAccess = "03:44";
+	}
+	// la scrivo come ultimo accesso
+	$(".navbar__user-info__lastaccess>span").text(lastAccess);
+}
+
 function sendMessage() {
 	var textInput = $("#rcol__chat-input__textinput");
 	
 	// acquisisco contenuto text input e lo svuoto
 	var message = textInput.val();
 	textInput.val("");
-	//genero l'ora di invio e la comincio a mettere nell'intestazione della chat
+	// genero l'ora di invio messaggio
 	var hour = hourGenerator();
-	$(".navbar__user-info__lastaccess .time").text(hour);
+	// la inserisco nelle info del contatto
+	$(".selected").find(".lcol__contact__recived").text(hour);
 
 	// inizializzo il template dei messaggi
 	var source   = document.getElementById("message-template").innerHTML;
@@ -74,12 +100,14 @@ function sendMessage() {
 function replyMessage() {
 	var lastAccessText = $(".navbar__user-info__lastaccess");
 
-	// backup ultimo accesso e sovrascrivo con Sta scrivendo
-	var lastAccessTextBackup = lastAccessText.text();
+	// sovrascrivo l'ultimo accesso con Sta scrivendo
 	lastAccessText.text("Sta scrivendo ...");
 
 	setTimeout(function() {
 		var hour = hourGenerator();
+		// aggiorno l'ora nelle info del contatto
+		$(".selected").find(".lcol__contact__recived").text(hour);
+
 		/// inizializzo il template dei messaggi
 		var source   = document.getElementById("message-template").innerHTML;
 		var template = Handlebars.compile(source);
@@ -90,9 +118,9 @@ function replyMessage() {
 		// stampo la risposta nella chat attiva
 		$(".show").append(html);
 
-		// ritorno a visualizzare l'ultimo accesso
-		lastAccessText.text(lastAccessTextBackup);
-	}, 1000);	
+		// torno a visualizzare l'ultimo accesso con la nuova ora
+		lastAccessText.text("Ultimo accesso oggi alle " + hour);
+	}, 1000);
 }
 
 function searchContact() {
@@ -112,17 +140,19 @@ function searchContact() {
 }
 
 function openChat() {
-	var contactName, contactPhoto;
+	var contactInfo = {};
 
 	//coloro di grigio il contatto cliccato
 	$(".lcol__contact").removeClass("selected");
 	$(this).addClass("selected");
 
 	//prelevo nome e foto e piazzarli nell'intestazione della chat
-	contactName = $(this).find(".lcol__contact__name").text();
-	contactPhoto = $(this).find(".lcol__contact__photo").html();
-	$(".navbar__user-info__name").text(contactName);
-	$(".navbar__user-info__photo").html(contactPhoto);
+	contactInfo.name = $(this).find(".lcol__contact__name").text();
+	contactInfo.photo = $(this).find(".lcol__contact__photo").html();
+	contactInfo.hour =  $(this).find(".lcol__contact__recived").text();
+	$(".navbar__user-info__name").text(contactInfo.name);
+	$(".navbar__user-info__photo").html(contactInfo.photo);
+	$(".navbar__user-info__lastaccess>span").text(contactInfo.hour);
 
 	//prendo il codice univoco del contatto per aprire la chat corrispondente
 	var contactID = $(this).attr("person");
