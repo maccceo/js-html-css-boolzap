@@ -49,18 +49,19 @@ function sendMessage() {
 	// acquisisco contenuto text input e lo svuoto
 	var message = textInput.val();
 	textInput.val("");
+	//genero l'ora di invio e la comincio a mettere nell'intestazione della chat
+	var hour = hourGenerator();
+	$(".navbar__user-info__lastaccess .time").text(hour);
 
-	// vado a prendere il template di aggiunta messaggi
-	var messageInHTML = $(".template .user").clone();
-	// gli inserisco il messaggio acquisito
-	messageInHTML.text(message);
+	// inizializzo il template dei messaggi
+	var source   = document.getElementById("message-template").innerHTML;
+	var template = Handlebars.compile(source);
+	// popolo il template con i dati richiesti
+	var context = {class: "user", message: message, time: hour};
+	var html    = template(context);
 
-	// lo visualizzo nella chat del contatto attualmente attivo
-	$(".rcol__chat").each(function(index) {
-		if ($(this).hasClass("show")) {
-			$(this).append(messageInHTML);
-		}
-	});
+	// visualizzo il messaggio nella chat del contatto attualmente attivo
+	$(".show").append(html);
 
 	// resetto icona microfono
 	$("#rcol__chat-input__mic").show();
@@ -78,18 +79,16 @@ function replyMessage() {
 	lastAccessText.text("Sta scrivendo ...");
 
 	setTimeout(function() {
-		// template visualizzazione messaggio ricevuto
-		var replyMessage = $(".template .other").clone();
-		// aggiungo contenuto messaggio
-		replyMessage.text("Ok");
+		var hour = hourGenerator();
+		/// inizializzo il template dei messaggi
+		var source   = document.getElementById("message-template").innerHTML;
+		var template = Handlebars.compile(source);
+		// popolo il template con i dati richiesti
+		var context = {class: "other", message: "Ok", time: hour};
+		var html    = template(context);
 
-		// cerco la chat del contatto a cui devo rispondere
-		$(".rcol__chat").each(function(index) {
-			if ($(this).hasClass("show")) {
-				// visualizzo il messaggio
-				$(this).append(replyMessage);
-			}
-		});
+		// stampo la risposta nella chat attiva
+		$(".show").append(html);
 
 		// ritorno a visualizzare l'ultimo accesso
 		lastAccessText.text(lastAccessTextBackup);
@@ -130,11 +129,7 @@ function openChat() {
 
 	//apro la chat corrispondente
 	$(".rcol__chat").removeClass("show");
-	$(".rcol__chat").each(function(index) {
-		if ($(this).attr("person") === contactID) {
-			$(this).addClass("show");
-		}
-	});
+	$(".rcol__chat[person='" + contactID + "']").addClass("show");
 }
 
 function messageDetails() {
@@ -147,3 +142,17 @@ function messageDetails() {
 	});
 }
 
+function hourGenerator() {
+	var d = new Date();
+	var p = [];
+	p.push(d.getHours().toString());
+	p.push(d.getMinutes().toString());
+	// aggiungo prima uno 0 se la cifra è singola
+	for (var i = 0; i < p.length; i++) {
+		if (p[i].length == 1) {
+			p[i] = '0' + p[i]
+		}
+	}
+	// ritorno una stringa "hh:mm"
+	return  p[0] + ':' + p[1];
+}

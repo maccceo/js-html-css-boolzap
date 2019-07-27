@@ -6,6 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+
 	<title>Boolzap</title>
 </head>
 <body>
@@ -134,7 +136,7 @@
 						</div>
 						<div class="navbar__user-info__text-wrapper">
 							<div class="navbar__user-info__name">Maurizio</div>
-							<div class="navbar__user-info__lastaccess">Ultimo accesso oggi alle 11:28</div>
+							<div class="navbar__user-info__lastaccess">Ultimo accesso oggi alle <span class="time"></span></div>
 						</div>
 					</div>
 					<div class="navbar__utilities">
@@ -147,6 +149,7 @@
 				<!-- area chat -->
 				<div person="id001" class="rcol__chat show">
 					<div class="rcol__chat__message user">Gigio hai parlato con Cava?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -158,6 +161,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Si
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -169,6 +173,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Cosa ti ha detto?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -180,6 +185,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Che può passare lui senza problemi che è di strafa
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -191,6 +197,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">strada*
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -202,6 +209,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Grande!
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -216,6 +224,7 @@
 
 				<div person="id002" class="rcol__chat">
 					<div class="rcol__chat__message user">ciao!
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -227,6 +236,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">hai proprio stile complimenti
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -238,6 +248,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">te lo posso offrire un tramezzino?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -252,6 +263,7 @@
 
 				<div person="id003" class="rcol__chat">
 					<div class="rcol__chat__message other">Sei religioso?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -263,6 +275,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Vorrei introdurti alla mia religione
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -274,6 +287,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Che religione
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -285,6 +299,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other"><a href="https://youtu.be/dQw4w9WgXcQ">https://youtu.be/dQw4w9WgXcQ</a><br><br>Pastor  Maldonado - Best Crashes and risky passes - Gigi D'Agostino Mix Radio Edit 2017
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -299,6 +314,7 @@
 
 				<div person="id004" class="rcol__chat">
 					<div class="rcol__chat__message other">A che ora torni?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -310,6 +326,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Boh
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -321,6 +338,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Va bene
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -335,6 +353,7 @@
 
 				<div person="id005" class="rcol__chat">
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -346,6 +365,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Bene tu?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -357,6 +377,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -368,6 +389,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Oh
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -379,6 +401,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -390,6 +413,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -401,6 +425,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Niente
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -415,6 +440,7 @@
 
 				<div person="id006" class="rcol__chat">
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -426,6 +452,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Bene tu?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -437,6 +464,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -448,6 +476,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Oh
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -459,6 +488,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -470,6 +500,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -481,6 +512,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Niente
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -495,6 +527,7 @@
 
 				<div person="id007" class="rcol__chat">
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -506,6 +539,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Bene tu?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -517,6 +551,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -528,6 +563,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Oh
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -539,6 +575,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -550,6 +587,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message user">Ciao, come stai?
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -561,6 +599,7 @@
 						</div>
 					</div>
 					<div class="rcol__chat__message other">Niente
+						<span class="rcol__chat__message__time time">10:00</span>
 						<div class="rcol__chat__message__menu">
 							<div class="rcol__chat__message__icon">
 								<i class="fas fa-chevron-down"></i>
@@ -585,41 +624,22 @@
 
 			</section>
 	</div>
-	<div id="wrapper" class="rcol__chat__message__dropdown">
-		<p>Info Messaggio</p>
-		<p id="delete">Cancella messaggio</p>
-	</div>
+
 	<!-- TEMPLATE -->
-	<div class="template">
-		<div class="rcol__chat__message user">
-						<div class="rcol__chat__message__menu">
-							<div class="rcol__chat__message__icon">
-								<i class="fas fa-chevron-down"></i>
-							</div>
-							<ul class="rcol__chat__message__dropdown">
-								<li class="message__info">Info messaggio</li>
-								<li class="message__delete">Cancella messaggio</li>
-							</ul>
-						</div>
-		</div>
-		<div class="rcol__chat__message other">
-						<div class="rcol__chat__message__dropdown">
-							<div class="rcol__chat__message__icon">
-								<i class="fas fa-chevron-down"></i>
-							</div>
-							<ul>
-								<li class="message__info">Info messaggio</li>
-								<li class="message__delete">Cancella messaggio</li>
-							</ul>
-						</div>
-		</div>
-		<div id="messageDetails">
-			<div id="wrapper">
-				<p>Info Messaggio</p>
-				<p id="delete">Cancella messaggio</p>
+	<script type="text/x-handlebars-template" id="message-template">
+		<div class="rcol__chat__message {{class}}">{{message}}
+			<span class="rcol__chat__message__time time">{{time}}</span>
+			<div class="rcol__chat__message__menu">
+				<div class="rcol__chat__message__icon">
+					<i class="fas fa-chevron-down"></i>
+				</div>
+				<ul class="rcol__chat__message__dropdown">
+					<li class="message__info">Info messaggio</li>
+					<li class="message__delete">Cancella messaggio</li>
+				</ul>
 			</div>
 		</div>
-	</div>
+	</script>
 	<script type="text/javascript" src="javascripts/main.js"></script>
 </body>
 </html>

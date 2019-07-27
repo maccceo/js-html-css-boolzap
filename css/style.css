@@ -341,17 +341,25 @@ input[type=text] {
 }
 
 .rcol__chat__message {
-	padding: 15px;
+	padding: 20px;
 	background-color: #FFF;
 	border-radius: 6px;
 	margin: 10px 0;
-	font-size: 0.9rem;
+	font-size: 0.85rem;
 	max-width: max-content;
 	min-width: 100px;
 	display: flex;
 	justify-content: space-between;
 	cursor: pointer;
 	position: relative;
+}
+
+.rcol__chat__message__time {
+	position: absolute;
+    bottom: 4px;
+    right: 6px;
+    font-size: 0.65rem;
+    color: darkgrey;
 }
 
 .user {
