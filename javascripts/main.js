@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	// #PRENDO ORA ULTIMO MESSAGGIO E LA VISUALIZZO NEI CONTATTI E NELL'INTESTAZIONE DELLA CHAT
+	// #INIZIALIZZO ORA ULTIMO MESSAGGIO PER OGNI CHAT
 	initHours();
 
 	// ##INVIO MESSAGGIO
@@ -14,12 +14,12 @@ $(document).ready(function() {
 
 		// switch icone mic/send quando c'è/non c'è testo
 		else if (event.which != 13) {
-			// c'è testo = invia messaggio on
+			// c'è testo = icona invia messaggio on
 			if ($("#rcol__chat-input__textinput").val().length > 0) {
 				$("#rcol__chat-input__mic").hide();
 				$("#rcol__chat-input__send").show();
 			}
-			// non c'è testo = microfono on
+			// non c'è testo = icona microfono on
 			else {
 				$("#rcol__chat-input__mic").show();
 				$("#rcol__chat-input__send").hide();
@@ -45,28 +45,33 @@ $(document).ready(function() {
 
 
 
+
 function initHours() {
 	var contactID, lastMsg, lastAccess;
 	$(".lcol__contact").each(function() {
 		// prendo il person ID del contatto
 		contactID = $(this).attr("person");
-		
 		// salvo l'ora dell'ultimo messaggio presente nella chat
 		lastMsg = $(".rcol__chat[person='" + contactID + "']").find(".rcol__chat__message__time:last").text();
-
 		// la inserisco come informazione del contatto
 		$(this).find(".lcol__contact__recived").text(lastMsg);
 	});
+	// inizializzo l'ultimo accesso
+	initLastAccess();	
+}
 
-	// salvo l'ora dell'ultimo messaggio in chat RICEVUTO
+
+function initLastAccess() {
+	// salvo l'ora dell'ultimo messaggio in chat inviato dall'altro
 	lastAccess = $(".rcol__chat.show").find(".other .rcol__chat__message__time:last").text();
 	// se non c'erano messaggi ricevuti invento l'ora
 	if (!lastAccess) {
 		lastAccess = "03:44";
 	}
-	// la scrivo come ultimo accesso
-	$(".navbar__user-info__lastaccess>span").text(lastAccess);
+	// visualizzo l'ora dell'ultimo accesso
+	$(".navbar__user-info__lastaccess").text("Ultimo accesso oggi alle " + lastAccess);
 }
+
 
 function sendMessage() {
 	var textInput = $("#rcol__chat-input__textinput");
@@ -76,7 +81,7 @@ function sendMessage() {
 	textInput.val("");
 	// genero l'ora di invio messaggio
 	var hour = hourGenerator();
-	// la inserisco nelle info del contatto
+	// aggiorno l'ora dell'ultimo messaggio del contatto
 	$(".selected").find(".lcol__contact__recived").text(hour);
 
 	// inizializzo il template dei messaggi
@@ -97,6 +102,7 @@ function sendMessage() {
 	replyMessage();
 }
 
+
 function replyMessage() {
 	var lastAccessText = $(".navbar__user-info__lastaccess");
 
@@ -105,21 +111,19 @@ function replyMessage() {
 
 	setTimeout(function() {
 		var hour = hourGenerator();
-		// aggiorno l'ora nelle info del contatto
-		$(".selected").find(".lcol__contact__recived").text(hour);
-
 		/// inizializzo il template dei messaggi
 		var source   = document.getElementById("message-template").innerHTML;
 		var template = Handlebars.compile(source);
 		// popolo il template con i dati richiesti
 		var context = {class: "other", message: "Ok", time: hour};
 		var html    = template(context);
-
 		// stampo la risposta nella chat attiva
 		$(".show").append(html);
 
+		// aggiorno l'ora nelle info del contatto
+		$(".selected").find(".lcol__contact__recived").text(hour);
 		// torno a visualizzare l'ultimo accesso con la nuova ora
-		lastAccessText.text("Ultimo accesso oggi alle " + hour);
+		initLastAccess();
 	}, 1000);
 }
 
@@ -149,10 +153,8 @@ function openChat() {
 	//prelevo nome e foto e piazzarli nell'intestazione della chat
 	contactInfo.name = $(this).find(".lcol__contact__name").text();
 	contactInfo.photo = $(this).find(".lcol__contact__photo").html();
-	contactInfo.hour =  $(this).find(".lcol__contact__recived").text();
 	$(".navbar__user-info__name").text(contactInfo.name);
 	$(".navbar__user-info__photo").html(contactInfo.photo);
-	$(".navbar__user-info__lastaccess>span").text(contactInfo.hour);
 
 	//prendo il codice univoco del contatto per aprire la chat corrispondente
 	var contactID = $(this).attr("person");
@@ -160,6 +162,9 @@ function openChat() {
 	//apro la chat corrispondente
 	$(".rcol__chat").removeClass("show");
 	$(".rcol__chat[person='" + contactID + "']").addClass("show");
+
+	//visualizzo ultimo accesso corretto
+	initLastAccess();
 }
 
 function messageDetails() {
@@ -180,7 +185,7 @@ function hourGenerator() {
 	// aggiungo prima uno 0 se la cifra è singola
 	for (var i = 0; i < p.length; i++) {
 		if (p[i].length == 1) {
-			p[i] = '0' + p[i]
+			p[i] = '0' + p[i];
 		}
 	}
 	// ritorno una stringa "hh:mm"
